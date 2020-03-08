@@ -28,10 +28,20 @@ FILE *OpenFile(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
-	//calling function to open file and get file handle of the given file
-	FILE *readFH = OpenFile(argc, argv);
-	//lines of statements is stored in fileLine
-	char fileLine[100];
+	//ask number of files
+	int n;
+	scanf("%d", &n);
+	//ask files' names and open them
+	int i;
+	char filename[30];
+	FILE *readFH[n];
+	for(i = 0; i < n; i++)
+	{
+		scanf(" %s", &filename);
+		readFH[i] = fopen(filename, "r");
+	}
+	//create and open out.dat file
+	FILE *outFH = fopen("out.dat", "w");
 	//each lines are read and stored in fileLine
 	while(fgets(fileLine, 100, readFH) != NULL)
 	{
