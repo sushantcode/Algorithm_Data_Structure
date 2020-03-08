@@ -39,11 +39,16 @@ int main(int argc, char *argv[])
 	{
 		scanf(" %s", &filename);
 		readFH[i] = fopen(filename, "r");
+		if(readFH == NULL)
+		{
+			printf("Error: File not found!!!");
+			exit(1);
+		}
 	}
 	//create and open out.dat file
 	FILE *outFH = fopen("out.dat", "w");
 	//each lines are read and stored in fileLine
-	while(fgets(fileLine, 100, readFH) != NULL)
+	while(fgets(fileLine, 100, readFH) != NULL &&)
 	{
 		//extracting first letter to draw
 		char *dLetter = strtok(fileLine, "|");
