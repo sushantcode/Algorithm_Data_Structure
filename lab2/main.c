@@ -24,6 +24,16 @@ int main(int argc, char *argv[])
 	}
 	//create and open out.dat file
 	FILE *outFH = fopen("out.dat", "w");
+	char *word[n];
+	char fileLine[100];
+	while(n > 0)
+	{
+		fgets(fileLine, 100, readFH[n-1]);
+		fileLine[strlen(fileLine) - 1] = '\0';
+		word[n-1] = malloc(strlen(fileLine) * sizeof(char));
+		strcpy(word[n-1], fileLine);
+		n--;
+	}
 	//each lines are read and stored in fileLine
 	while(fgets(fileLine, 100, readFH) != NULL &&)
 	{
@@ -40,6 +50,6 @@ int main(int argc, char *argv[])
 	{
 		fclose(readFH[j]);
 	}
-	
+	fclose(outFH);
 	return 0;
 }
