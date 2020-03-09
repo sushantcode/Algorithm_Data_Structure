@@ -3,29 +3,6 @@
 #include <string.h>
 #include <ctype.h>
 
-FILE *OpenFile(int argc, char *argv[])
-{
-	//initializing variable for file input
-	char filename[30];
-	//if command line contains 2 arguments, second one is copied to filename else user is asked to enter filename
-	if(argc == 2)
-	{
-		strcpy(filename, argv[1]);
-  }
-	//file is opened with read only mode and stored in file handle
-	FILE *readFH = fopen(filename, "r");
-	//user is promted to enter new file if file is empty
-	while(readFH == NULL)
-	{
-		printf("\nCould not open input file named %s.\nEnter the new filename: ", filename);
-		scanf(" %s", &filename);
-		getchar();
-		readFH = fopen(filename, "r");
-	}
-	//file handle is returned
-	return readFH;
-}
-
 int main(int argc, char *argv[])
 {
 	//ask number of files
@@ -58,6 +35,11 @@ int main(int argc, char *argv[])
 		addNode(*dLetter, dCommand, &LLH);
 	}
 	//closing file
-	fclose(readFH);
+	int j;
+	for(j = 0; j < n; j++)
+	{
+		fclose(readFH[j]);
+	}
+	
 	return 0;
 }
