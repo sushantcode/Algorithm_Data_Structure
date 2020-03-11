@@ -16,26 +16,40 @@ int main(int argc, char *argv[])
 	{
 		scanf(" %s", &filename);
 		readFH[i] = fopen(filename, "r");
-		if(readFH == NULL)
+		if(readFH[i] == NULL)
 		{
 			printf("Error: File not found!!!");
-			exit(1);
+			exit(0);
 		}
 	}
 	//create and open out.dat file
 	FILE *outFH = fopen("out.dat", "w");
 	char *word[n];
-	char fileLine[100];
-	while(n > 0)
+	char fileLine[50];
+	int a;
+	for(a = 0; a < n; a++)
 	{
-		fgets(fileLine, 100, readFH[n-1]);
-		fileLine[strlen(fileLine) - 1] = '\0';
-		word[n-1] = malloc(strlen(fileLine) * sizeof(char));
-		strcpy(word[n-1], fileLine);
-		n--;
+		word[a] = (char*) malloc(50 * sizeof(char));
+		if (!word[a])
+		{
+  			printf("malloc failed %d\n",__LINE__);
+  			exit(0);
+		}
 	}
+	int b;
+	for(b = 0; b < n; b++)
+	{
+		fgets(fileLine, 50, readFH[b]);
+		strcpy(word[b], fileLine);
+		printf(" %s ", word[b]);
+	}
+	/*int b;
+	for(b = 0; b < n; b++)
+	{
+		printf(" %s ", *word[b]);
+	}*/
 	//each lines are read and stored in fileLine
-	while(fgets(fileLine, 100, readFH) != NULL &&)
+	/*while(fgets(fileLine, 100, readFH) != NULL &&)
 	{
 		//extracting first letter to draw
 		char *dLetter = strtok(fileLine, "|");
@@ -43,7 +57,7 @@ int main(int argc, char *argv[])
 		char *dCommand = strtok(NULL, "|");
 		//printf("%s\n", dCommand);
 		addNode(*dLetter, dCommand, &LLH);
-	}
+	}*/
 	//closing file
 	int j;
 	for(j = 0; j < n; j++)
