@@ -3,8 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#define less(A, B) (key(A) < key(B))
-#define exch(A, B) { Item t = A; A = B; B = t; }
+#define exch(A, B) { char *t; strcpy(t, A); strcpy(A, B); strcpy(B, t); }
 
 int parent(int i)
 {
@@ -23,16 +22,28 @@ int right(int i)
 
 void minheapify(char *word[], int n)
 {
-	// Convert array to maxheap, e.g. Build-Max-Heap
 	int k;
-	for (k = parent(N); k >= 1; k--) 
+	for (k = parent(n); k >= 1; k--) 
 	{
-		maxHeapify(&pq(0), k, n);
 		int j;
-		while(left(k) <= n)
+		printf(" %d", k);
+		while (left(k) <= n)
 		{
-			j = left(k);
-			if (j < n && 
+			j = left(k);	//left child
+			if (j < n && strcmp(word[j], word[j+1]) < 0)
+			{
+				j = right(k);
+				char *t;
+				strcpy(t, word[k]);
+				
+				strcpy(word[k], word[j]); 
+				strcpy(word[j], t);
+			}
+			else
+			{
+				break;
+			}
+			k = j;					//descend
 		}
   	}
 }
@@ -74,12 +85,12 @@ int main(int argc, char *argv[])
 	{
 		fgets(fileLine, 50, readFH[b]);
 		strcpy(word[b], fileLine);
-		printf(" %s ", word[b]);
 	}
-	/*int b;
-	for(b = 0; b < n; b++)
+	minheapify(word, n);
+	/*int c;
+	for(c = 0; c < n; c++)
 	{
-		printf(" %s ", *word[b]);
+		printf(" %s", word[c]);
 	}*/
 	//each lines are read and stored in fileLine
 	/*while(fgets(fileLine, 100, readFH) != NULL &&)
