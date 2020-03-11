@@ -3,6 +3,39 @@
 #include <string.h>
 #include <ctype.h>
 
+#define less(A, B) (key(A) < key(B))
+#define exch(A, B) { Item t = A; A = B; B = t; }
+
+int parent(int i)
+{
+  return i/2;
+}
+
+int left(int i)
+{
+  return 2*i;
+}
+
+int right(int i)
+{
+  return 2*i+1;
+}
+
+void minheapify(char *word[], int n)
+{
+	// Convert array to maxheap, e.g. Build-Max-Heap
+	int k;
+	for (k = parent(N); k >= 1; k--) 
+	{
+		maxHeapify(&pq(0), k, n);
+		int j;
+		while(left(k) <= n)
+		{
+			j = left(k);
+			if (j < n && 
+		}
+  	}
+}
 int main(int argc, char *argv[])
 {
 	//ask number of files
