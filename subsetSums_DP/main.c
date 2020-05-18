@@ -1,16 +1,14 @@
-/* 	Name: Sushant Gupta
-	ID: 1001520302
-	Command: gcc Sushant_Lab3.c
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 
 //fill all the inputs
 void takeInput(int *n, int *t1, int *t2, int **S, int ***C){
 	int i;
+	printf("Enter the number of elements in the set: ");
 	scanf("%d", n);
+	printf("\nEnter the first target value: ");
 	scanf("%d", t1);
+	printf("\nEnter the second target value: ");
 	scanf("%d", t2);
 	//allocating memory for sequence and cost function table
 	*S=(int*) malloc((*n+1)*sizeof(int));
@@ -28,6 +26,7 @@ void takeInput(int *n, int *t1, int *t2, int **S, int ***C){
 	//base sequence in table
 	(*S)[0] = 0;
 	for (i = 1; i <= *n; i++){
+		printf("\nEnter the element %d of the set: ", i);
 		scanf("%d", *S+i);
 	}
 }
