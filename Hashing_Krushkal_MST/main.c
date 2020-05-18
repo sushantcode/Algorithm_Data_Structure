@@ -1,8 +1,3 @@
-/* 	Name: Sushant Gupta
-	ID: 1001520302
-	Command: gcc Sushant_Lab5.c
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -36,6 +31,7 @@ int fillTables(int p, int *hash){
 	char key2[25];
 	int i, h1, h2, j, c = 0;
 	for (i = 0; i < m; i++){
+		printf("\nEnter the tail-vertex: ");
 		scanf(" %s", key1);
 		j = h1 = key1[0]%p;
 		h2 = key1[0]%(p-1) + 1;
@@ -52,6 +48,7 @@ int fillTables(int p, int *hash){
 			}
 		}
 		edgeTable[i].tail = hash[j];
+		printf("\nEnter the head-vertex: ");
 		scanf(" %s", key2);
 		j = h1 = key2[0]%p;
 		h2 = key2[0]%(p-1) + 1;
@@ -63,11 +60,12 @@ int fillTables(int p, int *hash){
 			strcpy(strTable[c].str, key2);
 			c++;
 			if (n < c) {
-				printf("Error: there are more vertices than n.");
+				printf("Error: there are more vertices than n.\n");
 				exit(0);
 			}
 		}
 		edgeTable[i].head = hash[j];
+		printf("\nEnter the weight of the edge: ");
 		scanf("%d", &edgeTable[i].weight);
 	}
 	if (c < n){
@@ -158,6 +156,7 @@ int main(int argc, char *argv[])
 	int i, MSTweight = 0;
 	int *hash;
 	//read number of vertices
+	printf("Enter the number of vertices: ");
 	scanf("%d", &n);
 	if (n < 1){
 		printf("Bad number of vertices %d\n", n);
@@ -168,6 +167,7 @@ int main(int argc, char *argv[])
 		p++;
 	}
 	//read number of edges
+	printf("Enter the number of edges: ");
 	scanf("%d", &m);
 	if (m < 1){
 		printf("Bad number of edges %d\n", m);
